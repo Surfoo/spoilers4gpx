@@ -19,7 +19,7 @@
                 <a id="glyphicon-help" href="#help" data-toggle="modal" title="About Spoilers4Gpx" class="glyphicon glyphicon-question-sign"></a>
             </div>
 
-            <form role="form" action="" method="post">
+            <form role="form" action="#" method="post">
                 <div class="form-group">
                     <span class="help-block">Provide the list of your geocaches separated by a comma, semicolon, line break or space.</span>
                     <textarea class="form-control" rows="5" cols="50" id="gccodelist" placeholder="Type your GC Code list here"></textarea>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="modal-body">
                         <p>Spoilers4Gpx is a tool to include geocache's spoilers in GPX files.</p>
-                        <p>I would rather never have needed to develop this application, but unfortunately Grounspeak doesn't include them despite some requests from users. I'll be very glad the day which I could delete this tool when Grounspeak will integrate spoilers in GPX files.</a></p>
+                        <p>I would rather never have needed to develop this application, but unfortunately Groundspeak doesn't include spoilers despite some requests from users. I'll be very glad the day which I could delete this tool when Groundspeak will integrate spoiler's links in GPX files.</p>
                         <h3>For geocache owners</h3>
                         <p>The only way to include spoilers into GPX is to put spoiler's links into the description.<br/>
                         Fill the text box with the list of your caches, and Spoilers4Gpx will return a HTML code to put into each of your caches.

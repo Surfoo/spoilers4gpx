@@ -34,23 +34,15 @@ if (!preg_match('/ctl00_ContentBody_lbUsername">.*<strong>.*<\/strong>/', $res))
     renderAjax(array('success' => false, 'message' => 'Your username/password combination does not match. Make sure you entered your information correctly.'));
 }*/
 
-if(!array_key_exists('list', $_POST) || empty($_POST['list'])) {
-    renderAjax(array('success' => false, 'message' => 'List empty'));
-}
-
-if(!preg_match_all('/(GC[a-z0-9]{2,})/i', $_POST['list'], $gccodes)) {
+if(!array_key_exists('list', $_POST) || !preg_match_all('/(GC[a-z0-9]{2,})/i', $_POST['list'], $gccodes)) {
     renderAjax(array('success' => false, 'message' => 'List empty'));
 }
 
 $gccodes = array_unique(array_map('strtoupper', $gccodes[0]));
 
 $data = array();
-$selected_gccodes = array();
 
 foreach($gccodes as $gccode) {
-    if(empty($gccode) || strpos($gccode, 'GC') !== 0 || strlen($gccode) <= 3) {
-        continue;
-    }
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, sprintf(URL_GEOCACHE, $gccode));
     curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
@@ -69,8 +61,8 @@ foreach($gccodes as $gccode) {
     // '#<a href="(http://img\.geocaching\.com[^.]+\.(jpg|jpeg|png|gif))"[^>]+>([^<]+)</a>(?:<br />([^<]+)<br /><br />)?#'
 
     if(preg_match_all('#<li><a href="(http://img\.geocaching\.com[^.]+\.(jpg|jpeg|png|gif))"[^>]+>([^<]+)</a></li>#', $result, $spoilers, PREG_SET_ORDER)
-       && preg_match('#cache_logbook\.aspx\?guid=([a-f0-9-]+)"#', $result, $guid)
-       && preg_match('#<span id="ctl00_ContentBody_CacheName">([^<]+)</span>#', $result, $title)) {
+        && preg_match('#cache_logbook\.aspx\?guid=([a-f0-9-]+)"#', $result, $guid)
+        && preg_match('#<span id="ctl00_ContentBody_CacheName">([^<]+)</span>#', $result, $title)) {
         $rows = array();
         foreach($spoilers as $spoiler) {
             $rows[] = sprintf(SPOILER_TAG, $spoiler[3], $spoiler[1]) . "\n";
@@ -78,7 +70,6 @@ foreach($gccodes as $gccode) {
         $data[$guid[1]] = array('gccode'   => $gccode,
                                 'title'    => $title[1],
                                 'spoilers' => SPOILER_INFO . "\n" . implode('', $rows));
-        $selected_gccodes[] = $gccode;
     }
 }
 
@@ -86,4 +77,4 @@ if(empty($data)) {
     renderAjax(array('success' => true, 'data' => false));
 }
 
-renderAjax(array('success' => true, 'data' => $data, 'selected_gccodes' => implode(', ', $selected_gccodes)));
+renderAjax(array('success' => true, 'data' => $data, 'selected_gccodes' => implode(', ', $gccodes)));

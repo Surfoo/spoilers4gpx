@@ -45,3 +45,7 @@ $('#submit').click(function() {
     });
     return false;
 });
+
+if(window.location.hash && window.location.hash.substring(1) == 'help') {
+    $('#help').modal('show');
+}
