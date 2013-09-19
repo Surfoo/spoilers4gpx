@@ -1,0 +1,27 @@
+@media screen and (max-width: 768px) {
+    h1 {
+        margin: 0px;
+        font-size: 1.4em;
+    }
+    h3 {
+        margin: 0px;
+        font-size: 1.2em;
+    }
+}
+
+#instructions, #snippets {
+    display: none;
+}
+#instructions h3 {
+    margin-top: 0;
+}
+#snippets textarea {
+    font-family: Courier New;
+}
+#glyphicon-help {
+    font-size: 2em;
+    color: #000;
+}
+#glyphicon-help:hover, #glyphicon-help:focus, #glyphicon-help:active {
+    text-decoration: none;
+}

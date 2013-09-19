@@ -1,0 +1,19 @@
+{
+    "name": "Geocaching/Spoilers4gpx",
+    "license": "Apache-2.0",
+    "type": "project",
+    "keywords": ["geocaching", "georoadbook", "geocache", "roadbook", "spoilers", "spoiler", "gpx"],
+    "homepage": "http://spoilers4gpx.vaguelibre.net/",
+    "version": "1.0",
+    "time": "2013-09-13",
+    "description": "Spoilers4gpx is a tool to provide spoilers into GPX files",
+    "authors": [{
+        "name": "Surfoo",
+        "email": "surfooo@gmail.com",
+        "role": "Developer"
+    }],
+    "require": {
+        "php": ">=5.3",
+        "twig/twig": "1.13.*"
+    }
+}
