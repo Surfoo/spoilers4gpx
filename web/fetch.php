@@ -38,15 +38,14 @@ if(!array_key_exists('list', $_POST) || empty($_POST['list'])) {
     renderAjax(array('success' => false, 'message' => 'List empty'));
 }
 
-$gccodes = str_replace(array(' ', ',', ';'), "\n", $_POST['list']);
-$gccodes = str_replace("\n\n", "\n", $gccodes);
-$gccodes = preg_replace("/[\n\r]{2,}/","\n",$gccodes);
-$gccodes = explode("\n", $gccodes);
-$gccodes = array_map('trim', $gccodes);
-$gccodes = array_map('strtoupper', $gccodes);
-$gccodes = array_unique($gccodes);
+if(!preg_match_all('/(GC[a-z0-9]{2,})/i', $_POST['list'], $gccodes)) {
+    renderAjax(array('success' => false, 'message' => 'List empty'));
+}
+
+$gccodes = array_unique(array_map('strtoupper', $gccodes[0]));
 
 $data = array();
+$selected_gccodes = array();
 
 foreach($gccodes as $gccode) {
     if(empty($gccode) || strpos($gccode, 'GC') !== 0 || strlen($gccode) <= 3) {
@@ -70,18 +69,21 @@ foreach($gccodes as $gccode) {
     // '#<a href="(http://img\.geocaching\.com[^.]+\.(jpg|jpeg|png|gif))"[^>]+>([^<]+)</a>(?:<br />([^<]+)<br /><br />)?#'
 
     if(preg_match_all('#<li><a href="(http://img\.geocaching\.com[^.]+\.(jpg|jpeg|png|gif))"[^>]+>([^<]+)</a></li>#', $result, $spoilers, PREG_SET_ORDER)
-       && preg_match('/cache_logbook\.aspx\?guid=([a-f0-9-]+)"/', $result, $guid)) {
+       && preg_match('#cache_logbook\.aspx\?guid=([a-f0-9-]+)"#', $result, $guid)
+       && preg_match('#<span id="ctl00_ContentBody_CacheName">([^<]+)</span>#', $result, $title)) {
         $rows = array();
         foreach($spoilers as $spoiler) {
             $rows[] = sprintf(SPOILER_TAG, $spoiler[3], $spoiler[1]) . "\n";
         }
-        $data[$guid[1]] = array('gccode' => $gccode,
-                                'list'   => SPOILER_INFO . "\n" . implode('', $rows));
+        $data[$guid[1]] = array('gccode'   => $gccode,
+                                'title'    => $title[1],
+                                'spoilers' => SPOILER_INFO . "\n" . implode('', $rows));
+        $selected_gccodes[] = $gccode;
     }
 }
 
 if(empty($data)) {
-    renderAjax(array('success' => true, 'list' => false));
+    renderAjax(array('success' => true, 'data' => false));
 }
 
-renderAjax(array('success' => true, 'list' => $data));
+renderAjax(array('success' => true, 'data' => $data, 'selected_gccodes' => implode(', ', $selected_gccodes)));

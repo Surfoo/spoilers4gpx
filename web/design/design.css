@@ -8,7 +8,9 @@
         font-size: 1.2em;
     }
 }
-
+body {
+    margin-bottom: 1em;
+}
 #instructions, #snippets {
     display: none;
 }

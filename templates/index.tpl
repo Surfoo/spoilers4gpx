@@ -35,7 +35,7 @@
                 <ol>
                     <li>Check the list of spoilers for each of caches below. In many cases, images are not a spoiler, so you can remove the line,</li>
                     <li>Copy the code in the textarea,</li>
-                    <li>Click on the GC code title to go to the edit page,</li>
+                    <li>Click on the title to go to the edit page,</li>
                     <li>Tick the checkbox "The descriptions below are in HTML" in your listing,</li>
                     <li>Paste the code at the end of the "Long Description" and submit the form.</li>
                 </ol>
