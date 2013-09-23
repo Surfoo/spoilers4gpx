@@ -60,12 +60,12 @@ foreach($gccodes as $gccode) {
     // if identified:
     // '#<a href="(http://img\.geocaching\.com[^.]+\.(jpg|jpeg|png|gif))"[^>]+>([^<]+)</a>(?:<br />([^<]+)<br /><br />)?#'
 
-    if(preg_match_all('#<li><a href="(http://img\.geocaching\.com[^.]+\.(jpg|jpeg|png|gif))"[^>]+>([^<]+)</a></li>#', $result, $spoilers, PREG_SET_ORDER)
+    if(preg_match_all('#<li><a href="(http://img\.geocaching\.com[^.]+\.jpg|jpeg|png|gif)"[^>]+>([^<]+)</a>(<span.*>(.*)<\/span>)?</li>#U', $result, $spoilers, PREG_SET_ORDER)
         && preg_match('#cache_logbook\.aspx\?guid=([a-f0-9-]+)"#', $result, $guid)
         && preg_match('#<span id="ctl00_ContentBody_CacheName">([^<]+)</span>#', $result, $title)) {
         $rows = array();
         foreach($spoilers as $spoiler) {
-            $rows[] = sprintf(SPOILER_TAG, $spoiler[3], $spoiler[1]) . "\n";
+            $rows[] = sprintf(SPOILER_TAG, $spoiler[2], $spoiler[1]) . "\n";
         }
         $data[$guid[1]] = array('gccode'   => $gccode,
                                 'title'    => $title[1],
