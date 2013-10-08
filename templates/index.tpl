@@ -21,8 +21,8 @@
 
             <form role="form" action="#" method="post">
                 <div class="form-group">
-                    <span class="help-block">Provide the list of your geocaches separated by a comma, semicolon, line break or space.</span>
-                    <textarea class="form-control" rows="5" cols="50" id="gccodelist" placeholder="Type your GC Code list here"></textarea>
+                    <span class="help-block">Provide the list of your geocaches below :</span>
+                    <textarea class="form-control" rows="5" cols="50" id="gccodelist" required="required"></textarea>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary" id="submit" data-loading-text="Loading...">Submit</button>
@@ -55,11 +55,20 @@
                     <div class="modal-body">
                         <p>Spoilers4Gpx is a tool to include geocache's spoilers in GPX files.</p>
                         <p>I would rather never have needed to develop this application, but unfortunately Groundspeak doesn't include spoilers despite some requests from users. I'll be very glad the day which I could delete this tool when Groundspeak will integrate spoiler's links in GPX files.</p>
+
                         <h3>For geocache owners</h3>
                         <p>The only way to include spoilers into GPX is to put spoiler's links into the description.<br/>
                         Fill the text box with the list of your caches, and Spoilers4Gpx will return a HTML code to put into each of your caches.
                         It's completely invisible on the listing! In this manner, spoilers will be into the GPX file and softwares about geocaching could download spoilers without fetch caches on geocaching.com
                         <p>Of course, this tool will be useful when lot of owners use it to place spoilers into their descriptions.</p>
+                        <p>There are 2 ways to use this web app : </p>
+                        <h5><strong>1st method:</strong></h5>
+                        <div class="method">Copy/paste a list a GC code in the text box to obtain the list of pictures included on listing.</div>
+
+                        <h5><strong>2nd method:</strong></h5>
+                        <div class="method">You can use the <a href="https://addons.mozilla.org/fr/firefox/addon/greasemonkey/">greasemonkey addon</a> (For Firefox) and install the <a href="spoilers4gpx.user.js">Spoilers4Gpx script</a> to obtain the code cache by cache.
+                        </div>
+
                         <h3>For developers</h3>
                         <p>For information, <a href="https://en.wikipedia.org/wiki/Markdown" onclick="window.open(this.href);return false;">Markdown</a> is used here, it's simple to write and parse. Links are written in this way:</p>
                         <pre>{{ demo_spoiler }}</pre>
