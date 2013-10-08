@@ -52,7 +52,11 @@
         e.preventDefault();
         window.open(this.href);
     });
-    if (window.location.hash && window.location.hash.substring(1) === 'help') {
-        $('#help').modal('show');
+
+    if (window.location.hash && window.location.hash.substring() !== '') {
+        var id = window.location.hash.substring();
+        if ($(id)) {
+            $(id).modal('show');
+        }
     }
 }());
