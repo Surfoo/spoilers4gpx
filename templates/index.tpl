@@ -12,6 +12,9 @@
         <div class="container">
 
             <div class="page-header">
+                <p class="pull-right">
+                    <a href="#applications" data-toggle="modal" class="btn btn-default">List of compatibles applications</a>
+                </p>
                 <h1>Spoilers for GPX</h1>
             </div>
 
@@ -79,6 +82,25 @@
             </div>
         </div>
 
+        <div id="applications" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">List of compatibles applications</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Applications should be a slightly modified to be compatible with Spoilers4Gpx. Here is a list of compatible applications:</p>
+                        <ul id="applications-list">
+                            <li><a href="http://georoadbook.vaguelibre.net/">Georoadbook</a></li>
+                            <li><a href="http://mgmgeo.free.fr/">MyGeocachingManager</a> (>= 1.6.0.0)</li>
+                            <li><a href="http://www.anode.plus.com/spoilersync/">SpoilerSync</a> (In a future release, after 1.0.33)</li>
+                        </ul>
+                        <p>If you have a compatible application, send an email to <strong>surfooo at gmail dot com</strong>, and I will add your application to the list!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/{{ constant('JQUERY_VERSION') }}/jquery.min.js"></script>
         <script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/{{ constant('BOOTSTRAP_VERSION') }}/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/spoilers.min.js?{{ constant('SUFFIX_CSS_JS') }}"></script>

@@ -48,6 +48,10 @@
         return false;
     });
 
+    $('#applications-list').on('click', 'a', function(e) {
+        e.preventDefault();
+        window.open(this.href);
+    });
     if (window.location.hash && window.location.hash.substring(1) === 'help') {
         $('#help').modal('show');
     }
