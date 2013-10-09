@@ -27,7 +27,7 @@
         newLink.setAttributeNode(href);
 
         style = document.createAttribute('style');
-        style.nodeValue = 'background-image: url("http://vaguelibre.org/geocaching/spoilers4gpx/web/icon.png");'
+        style.nodeValue = 'background-image: url("http://spoilers4gpx.vaguelibre.net/spoilers4gpx.png");'
         newLink.setAttributeNode(style);
 
         var newContent = document.createTextNode("Spoilers4Gpx");
