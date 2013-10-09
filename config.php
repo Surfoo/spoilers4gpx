@@ -2,9 +2,10 @@
 error_reporting(-1);
 ini_set('display_errors', '1');
 
+define('ROOT', __DIR__);
+
 $template_compiled_dir = ($_SERVER['HTTP_HOST'] == 'spoilers4gpx.vaguelibre.net') ? ROOT . '/cache' : false;
 
-define('ROOT',          __DIR__);
 define('TEMPLATE_DIR',  ROOT . '/templates');
 define('TEMPLATE_COMPILED_DIR', $template_compiled_dir);
 
