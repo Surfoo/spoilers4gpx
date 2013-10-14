@@ -24,7 +24,7 @@
 
             <form role="form" action="#" method="post">
                 <div class="form-group">
-                    <span class="help-block">Provide the list of your geocaches below :</span>
+                    <span class="help-block">Provide a list of your GC codes below:</span>
                     <textarea class="form-control" rows="5" cols="50" id="gccodelist" required="required"></textarea>
                 </div>
                 <div class="form-group">
@@ -39,7 +39,7 @@
                     <li>Check the list of spoilers for each of caches below. In many cases, images are not a spoiler, so you can remove the line,</li>
                     <li>Copy the code in the textarea,</li>
                     <li>Click on the title to go to the edit page,</li>
-                    <li>Tick the checkbox "The descriptions below are in HTML" in your listing,</li>
+                    <li>Tick the checkbox “The descriptions below are in HTML” in your listing,</li>
                     <li>Paste the code at the end of the "Long Description" and submit the form.</li>
                 </ol>
             </div>
@@ -57,14 +57,12 @@
                     </div>
                     <div class="modal-body">
                         <p>Spoilers4Gpx is a tool to include geocache's spoilers in GPX files.</p>
-                        <p>I would rather never have needed to develop this application, but unfortunately Groundspeak doesn't include spoilers despite some requests from users. I'll be very glad the day which I could delete this tool when Groundspeak will integrate spoiler's links in GPX files.</p>
 
                         <h3>For geocache owners</h3>
-                        <p>The only way to include spoilers into GPX is to put spoiler's links into the description.<br/>
+                        <p>The only way to include spoilers into GPX is to put the spoiler's links into the description.<br/>
                         Fill the text box with the list of your caches, and Spoilers4Gpx will return a HTML code to put into each of your caches.
-                        It's completely invisible on the listing! In this manner, spoilers will be into the GPX file and softwares about geocaching could download spoilers without fetch caches on geocaching.com
-                        <p>Of course, this tool will be useful when lot of owners use it to place spoilers into their descriptions.</p>
-                        <p>There are 2 ways to use this web app : </p>
+                        It's completely invisible on the listing! In this manner, spoilers will be inserted into the GPX file and softwares about geocaching could download spoilers without having to fetch caches on geocaching.com.
+                        <p>There are two ways to use this web app: </p>
                         <h5><strong>1st method:</strong></h5>
                         <div class="method">Copy/paste a list a GC code in the text box to obtain the list of pictures included on listing.</div>
 
