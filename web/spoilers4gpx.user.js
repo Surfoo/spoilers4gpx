@@ -5,7 +5,7 @@
 // @include         http://www.geocaching.com/geocache/*
 // @include         http://www.geocaching.com/hide/report.aspx*
 // @updateURL       http://spoilers4gpx.vaguelibre.net/spoilers4gpx.user.js
-// @version         1.0
+// @version         1.0.1
 // ==/UserScript==
 
 (function() {
