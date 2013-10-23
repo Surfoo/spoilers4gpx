@@ -5,7 +5,7 @@
 // @include         http://www.geocaching.com/geocache/*
 // @include         http://www.geocaching.com/hide/report.aspx*
 // @updateURL       http://spoilers4gpx.vaguelibre.net/spoilers4gpx.user.js
-// @version         1.0.1
+// @version         1.0.2
 // ==/UserScript==
 
 (function() {
@@ -41,7 +41,7 @@
         elm.appendChild(newAdminTool);
 
         document.getElementById("Spoilers4Gpx").addEventListener('click', function(e) {
-            var findSpoilers = /<a href="(http:\/\/img\.geocaching\.com[^.]+\.(jpg|jpeg|png|gif))"[^>]+>([^<]+)<\/a>/g,
+            var findSpoilers = /<a href="(http:\/\/imgcdn\.geocaching\.com[^.]+\.(jpg|jpeg|png|gif))"[^>]+>([^<]+)<\/a>/g,
                 item = '',
                 list = '',
                 edit_path = '',
@@ -66,6 +66,8 @@
             if (confirm(list)) {
                 window.location = edit_path;
             }
+            e.preventDefault();
+            return false;
         });
     }
 
