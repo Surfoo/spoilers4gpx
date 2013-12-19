@@ -5,7 +5,7 @@
         <title>Spoilers4gpx</title>
         <meta name="description" content="Spoilers4gpx is a tool to provide spoilers into GPX files.">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" media="all" />
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/{{ constant('BOOTSTRAP_VERSION') }}/css/bootstrap.min.css" media="all" />
         <link rel="stylesheet" href="design/design.css?{{ constant('SUFFIX_CSS_JS') }}" media="all" />
     </head>
     <body>
@@ -24,7 +24,7 @@
 
             <form role="form" action="#" method="post">
                 <div class="form-group">
-                    <span class="help-block">Provide a list of your GC codes below:</span>
+                    <span class="help-block">Provide a list of your GC codes published below:</span>
                     <textarea class="form-control" rows="5" cols="50" id="gccodelist" required="required"></textarea>
                 </div>
                 <div class="form-group">
