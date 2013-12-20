@@ -92,7 +92,7 @@
                         <ul id="applications-list">
                             <li><a href="http://georoadbook.vaguelibre.net/">Georoadbook</a></li>
                             <li><a href="http://mgmgeo.free.fr/">MyGeocachingManager</a> (>= 1.6.0.0)</li>
-                            <li><a href="http://www.anode.plus.com/spoilersync/">SpoilerSync</a> (In a future release, after 1.0.33)</li>
+                            {#<li><a href="http://www.anode.plus.com/spoilersync/">SpoilerSync</a> (In a future release, after 1.0.34)</li>#}
                         </ul>
                         <p>If you have a compatible application, send an email to <strong>surfooo at gmail dot com</strong>, and I will add your application to the list!</p>
                     </div>
