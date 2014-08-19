@@ -17,8 +17,8 @@ define('URL_GEOCACHE',   URL_GEOCACHING . 'seek/cache_details.aspx?wp=%s');
 // define('PASSWORD', '');
 // define('COOKIE_FILENAME', ROOT . '/cookie');
 
-define('JQUERY_VERSION', '2.0.3');
-define('BOOTSTRAP_VERSION', '3.0.3');
+define('JQUERY_VERSION', '2.1.1');
+define('BOOTSTRAP_VERSION', '3.2.0');
 define('SUFFIX_CSS_JS', 20131009);
 define('SPOILER_INFO', '<!-- Spoiler4Gpx is a tool for include spoilers into GPX files. More info here : http://spoilers4gpx.vaguelibre.net -->');
 define('SPOILER_TAG', '<!-- Spoiler4Gpx [%s](%s) -->');
