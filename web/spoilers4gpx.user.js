@@ -1,11 +1,14 @@
 // ==UserScript==
 // @name            Spoilers4gpx
-// @namespace       http://www.geocaching.com
+// @namespace       https://www.geocaching.com
 // @description     Retrieve spoilers for GPX files.
-// @include         http://www.geocaching.com/geocache/*
-// @include         http://www.geocaching.com/hide/report.aspx*
+// @include         https://www.geocaching.com/geocache/*
+// @include         https://www.geocaching.com/hide/report.aspx*
 // @updateURL       http://spoilers4gpx.vaguelibre.net/spoilers4gpx.user.js
-// @version         1.0.3
+// @grant           GM_setValue
+// @grant           GM_getValue
+// @grant           GM_deleteValue
+// @version         1.1
 // ==/UserScript==
 
 (function() {
@@ -41,14 +44,14 @@
         elm.appendChild(newAdminTool);
 
         document.getElementById("Spoilers4Gpx").addEventListener('click', function(e) {
-            var findSpoilers = /<a href="(http:\/\/img(?:cdn)?\.geocaching\.com[^.]+\.(jpg|jpeg|png|gif))"[^>]+>([^<]+)<\/a>/g,
-                item = '',
+            var findSpoilers = /<a href="(https:\/\/img(?:cdn)?\.geocaching\.com[^.]+\.(jpg|jpeg|png|gif))"[^>]+>([^<]+)<\/a>/g,
+                item = ['<!-- Spoiler4Gpx is a tool for include spoilers into GPX files. More info here: http://spoilers4gpx.vaguelibre.net -->'],
                 list = '',
                 edit_path = '',
                 match;
 
             while (match = findSpoilers.exec(document.documentElement.innerHTML)) {
-                item += '<!-- Spoiler4Gpx [' + match[3] + '](' + match[1] + ') -->' + "\n";
+                item.push('<!-- Spoiler4Gpx [' + match[3] + '](' + match[1] + ') -->');
             }
             if (item === '') {
                 alert('No spoilers found :-(');
@@ -56,14 +59,14 @@
                 return false;
             }
 
-            list = 'Here the code to copy paste at the end of the long description, don\'t forget to remove pictures in the list aren\'t a spoiler.' + "\n\n";
-            list += '<!-- Spoiler4Gpx is a tool for include spoilers into GPX files. More info here : http://spoilers4gpx.vaguelibre.net -->' + "\n";
-            list += item + "\n";
-            list += 'Do you want to go to the edit page now?' + "\n";
+            list = 'Here the code that will be added at the end of the long description, don\'t forget to remove pictures in the list aren\'t a spoiler.' + "\n\n";
+            list += item.join("\n");
+            list += "\n\n" + 'Do you want to go to the edit page and add this content now?' + "\n";
 
-            edit_path = 'http://www.geocaching.com' + elm.childNodes[3].childNodes[0].getAttribute("href") + '&s=spoilers4gpx#tbLongDesc';
+            edit_path = 'https://www.geocaching.com' + elm.childNodes[3].childNodes[0].getAttribute("href") + '&s=spoilers4gpx#tbLongDesc';
 
             if (confirm(list)) {
+                GM_setValue('spoilers_html', item);
                 window.location = edit_path;
             }
             e.preventDefault();
@@ -74,7 +77,14 @@
     if (window.location.pathname.substr(1) === 'hide/report.aspx' && getURLParameter('s') === 'spoilers4gpx') {
         var chkIsHtml = document.getElementById('chkIsHtml'),
             chkUnderstand = document.getElementById('ctl00_ContentBody_chkUnderstand'),
-            chkDisclaimer = document.getElementById('ctl00_ContentBody_chkDisclaimer');
+            chkDisclaimer = document.getElementById('ctl00_ContentBody_chkDisclaimer'),
+            spoilers_html = GM_getValue('spoilers_html');
+
+        if (typeof spoilers_html !== 'undefined') {
+            var elmLongDesc = document.getElementById('tbLongDesc');
+            elmLongDesc.value += "\n" + spoilers_html.join("\n");
+            GM_deleteValue('spoilers_html');
+        }
 
         if (chkIsHtml && !chkIsHtml.checked) {
             chkIsHtml.checked = true;
