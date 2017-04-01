@@ -34,15 +34,15 @@ if (!preg_match('/ctl00_ContentBody_lbUsername">.*<strong>.*<\/strong>/', $res))
     renderAjax(array('success' => false, 'message' => 'Your username/password combination does not match. Make sure you entered your information correctly.'));
 }*/
 
-if(!array_key_exists('list', $_POST) || !preg_match_all('/(GC[a-z0-9]{2,})/i', $_POST['list'], $gccodes)) {
-    renderAjax(array('success' => false, 'message' => 'List empty'));
+if (!array_key_exists('list', $_POST) || !preg_match_all('/(GC[a-z0-9]{2,})/i', $_POST['list'], $gccodes)) {
+    renderAjax(['success' => false, 'message' => 'List empty']);
 }
 
 $gccodes = array_unique(array_map('strtoupper', $gccodes[0]));
 
-$data = array();
+$data = [];
 
-foreach($gccodes as $gccode) {
+foreach ($gccodes as $gccode) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, sprintf(URL_GEOCACHE, $gccode));
     curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
@@ -53,27 +53,27 @@ foreach($gccodes as $gccode) {
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
     $result = curl_exec($ch);
     if (!$result) {
-        renderAjax(array('success' => false, 'message' => 'Request error: ' . curl_error($ch)));
+        renderAjax(['success' => false, 'message' => 'Request error: ' . curl_error($ch)]);
     }
     curl_close($ch);
 
     // if identified:
     // '#<a href="(http://img\.geocaching\.com[^.]+\.(jpg|jpeg|png|gif))"[^>]+>([^<]+)</a>(?:<br />([^<]+)<br /><br />)?#'
-    if(preg_match_all('#<li><a href="(http://img[cdn]*\.geocaching\.com[^.]+\.(jpg|jpeg|png|gif))"[^>]+>([^<]+)</a></li>#U', $result, $spoilers, PREG_SET_ORDER)
+    if (preg_match_all('#<li><a href="(https://img[cdn]*\.geocaching\.com[^.]+\.(jpg|jpeg|png|gif))"[^>]+>([^<]+)</a></li>#U', $result, $spoilers, PREG_SET_ORDER)
         && preg_match('#cache_logbook\.aspx\?guid=([a-f0-9-]+)"#', $result, $guid)
         && preg_match('#<span id="ctl00_ContentBody_CacheName">([^<]+)</span>#', $result, $title)) {
-        $rows = array();
-        foreach($spoilers as $spoiler) {
+        $rows = [];
+        foreach ($spoilers as $spoiler) {
             $rows[] = sprintf(SPOILER_TAG, $spoiler[3], $spoiler[1]) . "\n";
         }
-        $data[$guid[1]] = array('gccode'   => $gccode,
-                                'title'    => $title[1],
-                                'spoilers' => SPOILER_INFO . "\n" . implode('', $rows));
+        $data[$guid[1]] = ['gccode'        => $gccode,
+                           'title'         => $title[1],
+                           'spoilers'      => SPOILER_INFO . "\n" . implode('', $rows)];
     }
 }
 
-if(empty($data)) {
-    renderAjax(array('success' => true, 'data' => false));
+if (empty($data)) {
+    renderAjax(['success' => true, 'data' => false]);
 }
 
-renderAjax(array('success' => true, 'data' => $data, 'selected_gccodes' => implode(', ', $gccodes)));
+renderAjax(['success' => true, 'data' => $data, 'selected_gccodes' => implode(', ', $gccodes)]);
